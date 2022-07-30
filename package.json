@@ -1,0 +1,23 @@
+{
+  "name": "codersquare",
+  "version": "1.0.0",
+  "description": "A social web app for sharing learning resources in a hackernews-style experience. I'm building this for fun, contributions are welcome, feel free to send a PR or open an issue.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wesammustafa/codersquare.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wesammustafa/codersquare/issues"
+  },
+  "homepage": "https://github.com/wesammustafa/codersquare#readme"
+}
