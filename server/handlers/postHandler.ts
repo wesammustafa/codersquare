@@ -15,14 +15,15 @@ export const createPostHandler: ExpressHandler<CreatePostRequest, CreatePostResp
   request,
   response
 ) => {
-  if (!request.body.title) {
-    return response.status(400).send('Title field is required, but missing');
-  }
-
   if (!request.body.title || !request.body.url || !request.body.userId) {
     return response.sendStatus(400);
   }
 
+  // TODO: validate user exists
+  // TODO: get user Id from session
+  // TODO: validate title and url are non-empty
+  // TODO: validate url is new, otherwise add +1 to existing post
+  
   const post: Post = {
     id: crypto.randomUUID(),
     postedAt: Date.now(),
