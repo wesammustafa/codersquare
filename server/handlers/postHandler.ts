@@ -23,7 +23,7 @@ export const createPostHandler: ExpressHandler<CreatePostRequest, CreatePostResp
   // TODO: get user Id from session
   // TODO: validate title and url are non-empty
   // TODO: validate url is new, otherwise add +1 to existing post
-  
+
   const post: Post = {
     id: crypto.randomUUID(),
     postedAt: Date.now(),
@@ -33,5 +33,5 @@ export const createPostHandler: ExpressHandler<CreatePostRequest, CreatePostResp
   };
 
   await db.createPost(post);
-  response.send(200);
+  response.sendStatus(200);
 };
