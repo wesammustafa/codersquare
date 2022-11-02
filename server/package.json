@@ -2,12 +2,12 @@
   "name": "codersquare",
   "version": "1.0.0",
   "description": "A social web app for sharing learning resources in a hackernews-style experience. I'm building this for fun, contributions are welcome, feel free to send a PR or open an issue.",
-  "main": "index.js",
+  "main": "server.js",
   "directories": {
     "doc": "docs"
   },
   "scripts": {
-    "start": "nodemon index.ts",
+    "start": "nodemon server.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
