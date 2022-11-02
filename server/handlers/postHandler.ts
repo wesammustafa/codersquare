@@ -5,18 +5,18 @@ import { db } from '../datastore';
 import { ExpressHandler, Post } from '../types';
 
 export const listPostHandler: ExpressHandler<ListPostsRequest, ListPostsResponse> = async (
-  request,
-  response
+  req,
+  res
 ) => {
-  response.send({ posts: await db.listPosts() });
+  res.send({ posts: await db.listPosts() });
 };
 
 export const createPostHandler: ExpressHandler<CreatePostRequest, CreatePostResponse> = async (
-  request,
-  response
+  req,
+  res
 ) => {
-  if (!request.body.title || !request.body.url || !request.body.userId) {
-    return response.sendStatus(400);
+  if (!req.body.title || !req.body.url) {
+    return res.sendStatus(400);
   }
 
   // TODO: validate user exists
@@ -27,11 +27,11 @@ export const createPostHandler: ExpressHandler<CreatePostRequest, CreatePostResp
   const post: Post = {
     id: crypto.randomUUID(),
     postedAt: Date.now(),
-    title: request.body.title,
-    url: request.body.url,
-    userId: request.body.userId,
+    title: req.body.title,
+    url: req.body.url,
+    userId: res.locals.userId,
   };
 
   await db.createPost(post);
-  response.sendStatus(200);
+  res.sendStatus(200);
 };
