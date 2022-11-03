@@ -19,6 +19,7 @@ import { requestLoggerMiddleware } from './middleware/loggerMiddleware';
   app.use(requestLoggerMiddleware);
 
   // Public endpoints
+  app.get('/healthz', (req, res) => res.send({ status: '✌️' }));
   app.post('/v1/signup', asyncHandler(signUpHandler));
   app.post('/v1/signin', asyncHandler(signInHandler));
 
@@ -30,5 +31,5 @@ import { requestLoggerMiddleware } from './middleware/loggerMiddleware';
 
   app.use(errHandler);
 
-  app.listen(3000);
+  app.listen(process.env.PORT || 3000);
 })();
