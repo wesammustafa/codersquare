@@ -1,6 +1,8 @@
 import dotenv from 'dotenv';
 import express, { ErrorRequestHandler, RequestHandler } from 'express';
 import asyncHandler from 'express-async-handler';
+import fs from 'fs';
+import https from 'https';
 
 import { db, initDb } from './datastore';
 import { signInHandler, signUpHandler } from './handlers/authHandler';
@@ -31,5 +33,16 @@ import { requestLoggerMiddleware } from './middleware/loggerMiddleware';
 
   app.use(errHandler);
 
-  app.listen(process.env.PORT || 3000);
+  const port = process.env.PORT;
+  const env = process.env.ENV;
+  const listener = () => console.log(`Listening on port ${port} on ${env} environment`);
+
+  if (env === 'production') {
+    const key = fs.readFileSync('/path to key', 'utf-8');
+    const cert = fs.readFileSync('/path to cert', 'utf-8');
+
+    https.createServer({ key, cert }, app).listen(port, listener);
+  } else {
+    app.listen(port, listener);
+  }
 })();
